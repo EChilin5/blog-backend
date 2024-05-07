@@ -16,11 +16,12 @@ app.use(express.json());
 app.use("/api/blogs", blogRoutes);
 
 // connect to db
+const port = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log("listening to database", process.env.PORT);
+    app.listen(port, () => {
+      console.log("listening to database", port);
     });
   })
   .catch((error) => {
