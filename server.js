@@ -16,13 +16,10 @@ app.use(express.json());
 app.use("/api/blogs", blogRoutes);
 
 // connect to db
-const db =
-  "mongodb+srv://edgar:u73WA5qxgjwkTQz@mernapp.ie02iqy.mongodb.net/?retryWrites=true&w=majority&appName=MernApp";
-
 mongoose
-  .connect(db)
+  .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(5000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("listening to database", process.env.PORT);
     });
   })
